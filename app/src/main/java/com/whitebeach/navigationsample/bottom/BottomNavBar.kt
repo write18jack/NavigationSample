@@ -14,10 +14,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun BottomNavBar(navController: NavController) {
+
     val items = listOf(
         BottomNavItem.Content1,
         BottomNavItem.Content4
     )
+
     NavigationBar(
         containerColor = Color.Blue
     ) {

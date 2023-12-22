@@ -23,6 +23,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.whitebeach.navigationsample.bottom.BottomNavBar
+import com.whitebeach.navigationsample.bottom.BottomNavHost
 import com.whitebeach.navigationsample.ui.theme.NavigationSampleTheme
 
 class MainActivity : ComponentActivity() {
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NavigationSampleTheme {
-                // A surface container using the 'background' color from the theme
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
@@ -47,74 +48,19 @@ class MainActivity : ComponentActivity() {
 fun ParentContent() {
     Surface {
         val navController = rememberNavController()
-        val currentBackStack by navController.currentBackStackEntryAsState()
-
-        val screens = listOf(
-            Content1.apply {
-                onClickActionsIcon = {
-                    navController.navigate(Content2.route)
-                }
-            },
-            Content2.apply {
-                onClickTopBarIcon = {
-                    navController.popBackStack(Content1.route, false)
-                }
-                onClickActionsIcon = {
-                    navController.navigate(Content3.route)
-                }
-            },
-            Content3.apply {
-                onClickTopBarIcon = {
-                    navController.popBackStack(Content2.route, false)
-                }
-            }
-        )
 
         Scaffold(
-            topBar = {
-                screens
-                    .find { it.route == currentBackStack?.destination?.route }
-                    ?.let {
-                        it.navigationIcon?.let { it1 ->
-                            it.actionsIcon?.let { it2 ->
-                                TopAppBar(
-                                    title = it.topBarTitle,
-                                    navigationIcon = it1,
-                                    actions = it2,
-                                    colors = TopAppBarDefaults.mediumTopAppBarColors(
-                                        containerColor = Color.Blue,
-                                        navigationIconContentColor = Color.White,
-                                        titleContentColor = Color.White,
-                                        actionIconContentColor = Color.White
-                                    )
-                                )
-                            }
-                        }
-                    }
-            },
             bottomBar = {
                 BottomNavBar(navController)
             }
         ) {
-            NavHost(
+            BottomNavHost(
                 navController = navController,
-                startDestination = Content1.route,
-                Modifier.padding(it)
-            ) {
-                composable(Content1.route) {
-                    Content1(navController)
-                }
-                composable(Content2.route) {
-                    Content2(navController = navController)
-                }
-                composable(Content3.route){
-                    Content3(navController = navController)
-                }
-            }
+                modifier = Modifier.padding(it)
+            )
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable

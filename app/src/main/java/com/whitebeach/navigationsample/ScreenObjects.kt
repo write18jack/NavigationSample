@@ -18,12 +18,11 @@ import androidx.navigation.compose.composable
 sealed interface Screen {
     val route: String
     val topBarTitle: @Composable () -> Unit
-    val navigationIcon: @Composable (() -> Unit)?
-    val actionsIcon: @Composable (RowScope.() -> Unit)?
+    val navigationIcon: @Composable (() -> Unit)
+    val actionsIcon: @Composable (RowScope.() -> Unit)
 
     fun NavGraphBuilder.content(navController: NavController)
 }
-
 
 // Screenを継承
 object Content1 : Screen {
@@ -36,25 +35,22 @@ object Content1 : Screen {
         get() = {
             Text(text = "Content1")
         }
-
     override val navigationIcon: @Composable (() -> Unit)
         get() = {
             IconButton(onClick = { }) {
                 Icon(imageVector = Icons.Default.Menu, contentDescription = null)
             }
         }
-
     override val actionsIcon: @Composable() (RowScope.() -> Unit)
         get() = {
             IconButton(onClick = onClickActionsIcon) {
                 Icon(imageVector = Icons.Default.Check, contentDescription = null)
             }
         }
-
     override fun NavGraphBuilder.content(navController: NavController) {
         composable(route = this@Content1.route) {
             Content1(
-                navController
+
             )
         }
     }
@@ -72,21 +68,18 @@ object Content2 : Screen {
         get() = {
             Text(text = "Content2")
         }
-
     override val navigationIcon: @Composable (() -> Unit)
         get() = {
             IconButton(onClick = onClickTopBarIcon) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
         }
-
     override val actionsIcon: @Composable() (RowScope.() -> Unit)
         get() = {
             IconButton(onClick = onClickActionsIcon) {
                 Icon(imageVector = Icons.Default.Build, contentDescription = null)
             }
         }
-
     override fun NavGraphBuilder.content(navController: NavController) {
         composable(route = this@Content2.route) {
             Content2(navController = navController)
@@ -105,21 +98,18 @@ object Content3 : Screen {
         get() = {
             Text(text = "Content3 ")
         }
-
     override val navigationIcon: @Composable (() -> Unit)
         get() = {
             IconButton(onClick = onClickTopBarIcon) {
                 Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
             }
         }
-
     override val actionsIcon: @Composable() (RowScope.() -> Unit)
         get() = {
             IconButton(onClick = { }) {
                 Icon(imageVector = Icons.Default.Menu, contentDescription = null)
             }
         }
-
     override fun NavGraphBuilder.content(navController: NavController) {
         composable(route = this@Content3.route) {
             Content3(
