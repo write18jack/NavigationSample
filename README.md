@@ -1,1 +1,1 @@
-<img src="https://github.com/write18jack/NavigationSample/assets/79181941/5c3ac8f3-2cfe-480c-b273-62e6eb7e37b0" width="300px">
+<img src="https://github.com/write18jack/NavigationSample/assets/79181941/1deea544-0c42-4df1-ab2b-ae27f1195b3d" width="300px">
