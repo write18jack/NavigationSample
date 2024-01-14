@@ -23,6 +23,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.whitebeach.navigationsample.bottom.BottomNavBar
 import com.whitebeach.navigationsample.bottom.BottomNavHost
+import com.whitebeach.navigationsample.bottom.BottomNavItem
 import com.whitebeach.navigationsample.ui.theme.NavigationSampleTheme
 
 @Preview
@@ -43,7 +44,7 @@ fun Content1() {
         val screens = listOf(
             Content2.apply {
                 onClickTopBarIcon = {
-                    navController.popBackStack(Content1.route, false)
+                   // navController.popBackStack(Content1.route, false)
                 }
                 onClickActionsIcon = {
                     navController.navigate(Content3.route)
@@ -73,6 +74,9 @@ fun Content1() {
                             )
                         )
                     }
+            },
+            bottomBar = {
+
             }
         ) {
             NavHost(
@@ -85,6 +89,9 @@ fun Content1() {
                 }
                 composable(Content3.route) {
                     Content3(navController = navController)
+                }
+                composable(Content4.route) {
+
                 }
             }
         }
@@ -117,13 +124,32 @@ fun Content3(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Content4() {
-    Box(
-        Modifier
-            .fillMaxSize()
-            .background(Color.Red)
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "テンプレート"
+                    )
+                },
+                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                    containerColor = Color.Blue,
+                    titleContentColor = Color.White,
+                )
+            )
+        }
     ) {
-        Text(text = "Content4")
+        Box(
+            Modifier
+                .padding(it)
+                .fillMaxSize()
+                .background(Color.Red)
+        ) {
+            Text(text = "Content4")
+        }
     }
 }

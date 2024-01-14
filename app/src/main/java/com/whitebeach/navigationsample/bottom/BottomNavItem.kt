@@ -12,6 +12,7 @@ sealed class BottomNavItem(
     var screen_route: String
 ) {
 
+
     object Content1 : BottomNavItem(
         title ="content1",
         icon = Icons.Outlined.AddCircle,

@@ -21,7 +21,7 @@ sealed interface Screen {
     val navigationIcon: @Composable (() -> Unit)
     val actionsIcon: @Composable (RowScope.() -> Unit)
 
-    fun NavGraphBuilder.content(navController: NavController)
+    //fun NavGraphBuilder.content(navController: NavController)
 }
 
 // Screenを継承
@@ -47,13 +47,13 @@ object Content1 : Screen {
                 Icon(imageVector = Icons.Default.Check, contentDescription = null)
             }
         }
-    override fun NavGraphBuilder.content(navController: NavController) {
-        composable(route = this@Content1.route) {
-            Content1(
-
-            )
-        }
-    }
+//    override fun NavGraphBuilder.content(navController: NavController) {
+//        composable(route = this@Content1.route) {
+//            Content1(
+//
+//            )
+//        }
+//    }
 }
 
 // Screenを継承
@@ -70,9 +70,9 @@ object Content2 : Screen {
         }
     override val navigationIcon: @Composable (() -> Unit)
         get() = {
-            IconButton(onClick = onClickTopBarIcon) {
-                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
-            }
+//            IconButton(onClick = onClickTopBarIcon) {
+//                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
+//            }
         }
     override val actionsIcon: @Composable() (RowScope.() -> Unit)
         get() = {
@@ -80,11 +80,11 @@ object Content2 : Screen {
                 Icon(imageVector = Icons.Default.Build, contentDescription = null)
             }
         }
-    override fun NavGraphBuilder.content(navController: NavController) {
-        composable(route = this@Content2.route) {
-            Content2(navController = navController)
-        }
-    }
+//    override fun NavGraphBuilder.content(navController: NavController) {
+//        composable(route = this@Content2.route) {
+//            Content2(navController = navController)
+//        }
+//    }
 }
 
 // Screenを継承
@@ -110,11 +110,42 @@ object Content3 : Screen {
                 Icon(imageVector = Icons.Default.Menu, contentDescription = null)
             }
         }
-    override fun NavGraphBuilder.content(navController: NavController) {
-        composable(route = this@Content3.route) {
-            Content3(
-                navController = navController,
-            )
+//    override fun NavGraphBuilder.content(navController: NavController) {
+//        composable(route = this@Content3.route) {
+//            Content3(
+//                navController = navController,
+//            )
+//        }
+//    }
+}
+
+object Content4 : Screen {
+
+    var onClickTopBarIcon: () -> Unit = {}
+
+    override val route: String = "content4"
+
+    override val topBarTitle: @Composable () -> Unit
+        get() = {
+            Text(text = "Content4 ")
         }
-    }
+    override val navigationIcon: @Composable (() -> Unit)
+        get() = {
+            IconButton(onClick = onClickTopBarIcon) {
+                Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
+            }
+        }
+    override val actionsIcon: @Composable() (RowScope.() -> Unit)
+        get() = {
+            IconButton(onClick = { }) {
+                Icon(imageVector = Icons.Default.Menu, contentDescription = null)
+            }
+        }
+//    override fun NavGraphBuilder.content(navController: NavController) {
+//        composable(route = this@Content3.route) {
+//            Content3(
+//                navController = navController,
+//            )
+//        }
+//    }
 }
