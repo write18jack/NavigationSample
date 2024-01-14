@@ -13,7 +13,10 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
-fun BottomNavBar(navController: NavController) {
+fun BottomNavBar(
+    navController: NavController,
+    onNavigateToDestination: (route: String) -> Unit
+) {
 
     val items = listOf(
         BottomNavItem.Content1,
@@ -31,7 +34,7 @@ fun BottomNavBar(navController: NavController) {
                 selected = currentRoute == item.screen_route,
                 onClick = {
                     navController.navigate(item.screen_route) {
-
+                        onNavigateToDestination(item.screen_route)
                         navController.graph.startDestinationRoute?.let { screen_route ->
                             popUpTo(screen_route) {
                                 saveState = true
